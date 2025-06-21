@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista lista -->
+    <record id="view_quoterequest_list" model="ir.ui.view">
+        <field name="name">mi.api.quoterequest.list</field>
+        <field name="model">mi.api.quoterequest</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Resultado de Cotización">
+            <field name="quote_id"/>
+            <field name="expiration_date"/>
+            <field name="transaction_reference"/>
+            <field name="payment_type"/>
+            <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista formulario -->
+    <record id="view_quoterequest_form" model="ir.ui.view">
+        <field name="name">mi.api.quoterequest.form</field>
+        <field name="model">mi.api.quoterequest</field>
+        <field name="arch" type="xml">
+            <form string="Solicitud de Cotización API">
+                <header>
+                    <button name="get_quote"
+                            type="object"
+                            string="Enviar a API"
+                            class="oe_highlight"
+                            help="Envia esta solicitud a la API externa."/>
+                </header>
+                <sheet>
+                    <group string="Datos de la solicitud">
+                        <field name="transaction_reference"/>
+                        <field name="sender_account_uri"/>
+                        <field name="recipient_account_uri"/>
+                    </group>
+                    <group string="Monto del pago">
+                        <field name="payment_amount"/>
+                        <field name="payment_currency"/>
+                    </group>
+                    <group string="Información adicional">
+                        <field name="payment_origination_country"/>
+                        <field name="payment_type"/>
+                    </group>
+                    <group string="Tipo de cotización">
+                        <field name="receiver_currency"/>
+                        <field name="fees_included"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_quoterequest" model="ir.actions.act_window">
+        <field name="name">Solicitudes de Cotización</field>
+        <field name="res_model">mi.api.quoterequest</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_quoterequest_list"/>
+    </record>
+
+
+    <menuitem id="menu_root_quoterequest" name="API Quoter" sequence="10"/>
+    <menuitem id="menu_quoterequest_formulario"
+              name="Nueva Cotización"
+              parent="menu_root_quoterequest"
+              action="action_quoterequest"
+              sequence="10"/>
+</odoo>

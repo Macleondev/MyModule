@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mi_api_consumidor_user,access.mi.api.consumidor.user,model_mi_api_consumidor,base.group_user,1,1,1,1
+access_quoterequest_user,access_quoterequest_user,model_mi_api_quoterequest,base.group_user,1,1,1,1
